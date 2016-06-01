@@ -142,6 +142,12 @@
 
   </div>
 
+  </div><!-- #content -->
+
+<div class="modal fade category-cta" id="myModal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></div><div class="modal-body"><div class="row"><div class="col-sm-12"><h1>Don’t feel like 
+doing this yourself?</h1><p><strong>RJMetrics Pipeline</strong> automates the extracting and loading process. Reserve your seat for “Consolidating Data in Redshift” to find out how.</p><a href="https://rjmetrics.com/demo" class="btn cta-btn">Claim your spot</a></div></div></div></div><!-- /.modal-content --></div><!-- /.modal-dialog --></div><!-- /.modal -->
+
+
   <div></div>
 
   {squarespace-footers}
@@ -170,5 +176,48 @@
 {.end}
 
 </body>
+
+<script>
+var url = window.location.host;
+var parts = url.split('.');
+$( document ).ready(function() {
+var sub = parts[0];
+var oldurl = "https://rjmetrics.com/product/pipeline?utm_source=toredshift&utm_medium=microsite-referral&utm_campaign=";
+var newurl = oldurl + "microsite-referral+" + sub + "-toredshift";
+var modalurl = "https://rjmetrics.com/demo?utm_source=toredshift&utm_medium=microsite-referral&utm_campaign=";
+var newmodalurl = modalurl +"microsite-referral+" + sub + "-toredshift";
+$(".pipeline-cta-btn").attr("href", newurl);
+$(".cta-btn").attr("href", newmodalurl);
+});
+</script>
+
+<script type="text/javascript">
+  var modalShown = false;
+  $(document).on('mouseleave', leaveFromTop);
+  function leaveFromTop(e){
+    var windowWidth = $(window).width();
+    if(window.modalShown == false){
+      if(windowWidth > 860){
+        if( e.clientY < 40 ){ // less than 60px is close enough to the top
+          $('#myModal').modal('show');
+          dataLayer.push({"event":"modal-load"});
+          modalShown = true;
+        };
+      };
+    };
+  };
+
+  $('#myModal').on('hidden.bs.modal', function (e) {
+    dataLayer.push({"event":"modal-dismiss"});
+  });
+
+  $(window).resize(function(){
+    var newWindowWidth = $(window).width();
+    if(newWindowWidth < 861){
+      $('#myModal').modal('hide');
+    }
+  });
+</script>
+
 
 </html>
